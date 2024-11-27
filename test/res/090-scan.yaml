@@ -1,0 +1,28 @@
+Prepare:
+    Data: []
+Tests:
+    query:
+        - query: SCAN * FROM test_hash_range
+          results: 9
+
+        - query: SCAN * FROM test_hash_range CONSISTENT_READ
+          results: 9
+
+        - query: SCAN * FROM test_hash_range LIMIT 2
+          results: 2
+
+        - query: SCAN `hash`,`range` FROM test_hash_range
+          results: 9
+          validations:
+               - key: data[0].range
+                 value: 1
+
+        - query: SCAN * FROM test_hash_range USE INDEX gsi_index
+          results: 4
+
+
+
+        - title: EXPLAIN SCAN * FROM test_hash_range
+          query: SCAN * FROM test_hash_range
+          explain: true
+          log: false

@@ -1,0 +1,41 @@
+Prepare:
+    Data: []
+Tests:
+    query:
+        -
+          query: DESCRIBE TABLE tbl_name
+          log: false
+          shouldFail: true
+          validations:
+              - key: err.code
+                value: "'ResourceNotFoundException'"
+
+        -
+          query: DESCRIBE TABLE tablE
+          log: false
+          shouldFail: true
+          validations:
+              - key: err.code
+                value: "'ResourceNotFoundException'"
+
+        -
+          query: DESCRIBE TABLE test_hash_range
+          log: false
+          # validate!
+
+        -
+          title: EXPLAIN DESCRIBE TABLE test_hash_range
+          query: DESCRIBE TABLE test_hash_range
+          explain: true
+          log: false
+          # validate!
+
+        -
+          query: SHOW TABLES
+          log: false
+
+        - title: EXPLAIN SHOW TABLES
+          query: SHOW TABLES
+          explain: true
+          log: false
+          # validate!

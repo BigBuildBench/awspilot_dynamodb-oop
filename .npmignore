@@ -1,0 +1,17 @@
+node_modules
+
+test/
+src/
+experiments/
+
+package-lock.json
+browserify.js
+browserify.sh
+build-parser.sh
+
+
+.nvmrc
+.babelrc
+.travis.yml
+
+webpack.browser.js
